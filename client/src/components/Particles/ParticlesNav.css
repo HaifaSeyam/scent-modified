@@ -1,0 +1,35 @@
+/* .practice {
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+    background-image: linear-gradient( #F8B195, #F67280, #C06C84, #6C5B7B, #355C7D );
+    width: 100%;
+    align-content: center;
+    z-index: 0;
+} */
+
+.brand {
+    display: block;
+    padding-bottom: 2rem;
+    background: transparent;
+    position:absolute;
+    top: 30vh;
+    left: 50%;
+    -webkit-transform: translateX(-50%);
+    transform: translateX(-50%);
+    z-index: 9999;
+    font-family: 'Muli', sans-serif;
+}
+
+.logo {
+    text-align: center;
+    color: white;
+    font-size: 7.125rem;
+    padding-bottom: 1rem;
+}
+
+.sublogo {
+    text-align: center;
+    color: white;
+    font-size: 2rem;
+}

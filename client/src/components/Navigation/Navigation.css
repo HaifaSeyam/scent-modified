@@ -1,0 +1,20 @@
+/* .nav {
+    display: flex;
+    background-color: transparent;  
+    border-bottom: hidden;
+    position: absolute;
+    top: 75vh;
+    left: 50%;
+    -webkit-transform: translateX(-50%);
+    transform: translateX(-50%);
+    z-index: 9999;
+} */
+
+/* .nav-item {
+    padding: 0 5vw;
+    text-align: center;
+} */
+
+/* .nav-item a {
+    color:white;
+} */

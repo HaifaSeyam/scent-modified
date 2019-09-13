@@ -1,0 +1,10 @@
+/* .nav {
+    display: flex;
+    justify-content: center;
+} */
+
+.DashboardNav-root-1 {
+    border: solid 2px #6C5B7B;
+    border-radius: 10px;
+    margin-bottom: 30px;
+}

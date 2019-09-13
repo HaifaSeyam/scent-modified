@@ -1,0 +1,14 @@
+/* .navbar {
+  background-color:transparent;
+} */
+.navbar-light .navbar-nav .nav-link {
+  color: rgba(0,0,0,.9);  
+}
+#dropdown-item-button  {
+background-color: transparent;
+border: 0;
+}
+
+.nav-link {
+margin-left: 500px;
+}

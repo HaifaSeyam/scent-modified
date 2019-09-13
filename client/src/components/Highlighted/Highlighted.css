@@ -1,0 +1,33 @@
+.card {
+    display: inline-block;
+    width: 40%;
+    margin: 10px;
+}
+
+.cardImage {
+    height: 300px;
+}
+
+.cardTitle {
+    text-align: center;
+}
+
+.cardText {
+    display: inline-block;
+    margin-right: 10px;
+}
+
+.highlightedBtn {
+    float: right;
+    margin-top: 20px;
+    width: 175px;
+    height: 50px;
+    border-radius: 40px;
+    outline: 0;
+    border: 0;
+    background-color: #355C7D;
+    color: rgba(255,255,255,1);
+    font: normal 300 13px/30px 'Raleway', sans-serif;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+  }

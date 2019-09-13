@@ -1,0 +1,10 @@
+.image {
+  height: 95vh;
+}
+
+.caption {
+  background-color: #000;
+  opacity: 0.5;
+  left: 0;
+  right: 0;
+}
