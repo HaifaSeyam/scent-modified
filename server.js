@@ -1,7 +1,6 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const passport = require("passport");
-// const routes = require("./routes/api/api-routes");
 const dotenv = require("dotenv");
 dotenv.config()
 
@@ -31,7 +30,7 @@ if (process.env.NODE_ENV === "production") {
 require("./routes/api/api-routes")(app);
 
 // Connect to the Mongo DB
-mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/perfumes");
+mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/perfumes", { useNewUrlParser: true });
 
 // Start the API server
 app.listen(PORT, function() {

@@ -1,37 +1,35 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
 import Wrapper from "../Wrapper/Wrapper";
 import { Table, Button } from "react-bootstrap";
 import UpdateDataModal from "../UpdateDataModal/UpdateDataModal";
 import AlertModal from "../AlertModal/AlertModal";
 import API from "../../utils/API";
+import * as actionTypes from "../../actions/types";
 
 class ProfileComp extends Component {
 
-  state = {
-      updateModalShow: false,
-      alertModalShow: false,
-      user: ""
-    }
+  // state = {
+  //     updateModalShow: false,
+  //     alertModalShow: false,
+  //     user: ""
+  //   }
 
   componentDidMount() {
     const userId = localStorage.getItem('payload');
 
     API.getUserData(userId).then(response => {
-      this.setState({ user: response.data});
+      this.props.user = response.data;
     })
     .catch(err => console.log(err))
   }
 
-  showUpdateModal() {
-      this.setState({ updateModalShow: true })
-  }
+  // showUpdateModal() { this.props.updateModalShow = true }
   
-  showAlertModal() {
-    this.setState({ alertModalShow: true })
-  }
+  // showAlertModal() { this.props.alertModalShow = true }
 
-  updateModalClose = () => this.setState({ updateModalShow: false });
-  alertModalClose = () => this.setState({ alertModalShow: false });
+  // updateModalClose = () => { this.props.updateModalShow = false }
+  // alertModalClose = () => { this.props.alertModalShow = false }
 
   render() {
     return (
@@ -41,7 +39,7 @@ class ProfileComp extends Component {
             <tbody>
               <tr>
                 <td><h3>Name </h3></td>
-                <td><h3> {this.state.user.name} </h3></td>
+                <td><h3> {this.props.user.name} </h3></td>
                 <td>
                   <Button 
                     style={{
@@ -53,14 +51,14 @@ class ProfileComp extends Component {
                           float: "right"
                         }}
                     variant="primary" type="submit"
-                    onClick={() => this.showUpdateModal()}>
+                    onClick={() => this.props.showUpdateModal()}>
                     Change
                   </Button>
                 </td>
               </tr>
               <tr>
                 <td><h3>Email</h3></td>
-                <td><h3> {this.state.user.email} </h3></td>
+                <td><h3> {this.props.user.email} </h3></td>
                 <td>
                   <Button 
                     style={{
@@ -72,7 +70,7 @@ class ProfileComp extends Component {
                           float: "right"
                         }}
                     variant="primary" type="submit"
-                    onClick={() => this.showUpdateModal()}>
+                    onClick={() => this.props.showUpdateModal()}>
                     Change
                   </Button>
                 </td>
@@ -91,7 +89,7 @@ class ProfileComp extends Component {
                           float: "right"
                         }}
                     variant="primary" type="submit"
-                    onClick={() => this.showAlertModal()}>
+                    onClick={() => this.props.showAlertModal()}>
                     Reset
                   </Button>
                 </td>
@@ -110,7 +108,7 @@ class ProfileComp extends Component {
                           float: "right"
                         }}
                     variant="primary" type="submit"
-                    onClick={() => this.showAlertModal()}>
+                    onClick={() => this.props.showAlertModal()}>
                     View
                   </Button>
                 </td>
@@ -118,14 +116,14 @@ class ProfileComp extends Component {
             </tbody>
           </Table>
           <UpdateDataModal
-            show={this.state.updateModalShow}
-            onHide={this.updateModalClose}
-            closeModal={this.updateModalClose}
+            show={this.props.updateModalShow}
+            onHide={this.props.updateModalClose}
+            closeModal={this.props.updateModalClose}
           />
           <AlertModal
-            show={this.state.alertModalShow}
-            onHide={this.alertModalClose}
-            closeModal={this.alertModalClose}
+            show={this.props.alertModalShow}
+            onHide={this.props.alertModalClose}
+            closeModal={this.props.alertModalClose}
             msg="Coming Soon ... "
           />
         </Wrapper>
@@ -133,4 +131,21 @@ class ProfileComp extends Component {
   }
 }
 
-export default ProfileComp;
+const mapStateToProps = state => {
+  return {
+    updateModalShow: state.profile.updateModalShow,
+    alertModalShow: state.profile.alertModalShow,
+    user: state.profile.user
+  }
+}
+
+const mapDispatchToProps = dispatch => {
+  return { 
+    showUpdateModal: () => dispatch({ type: actionTypes.SHOW_UPDATE_MODAL }),
+    showAlertModal: () => dispatch({ type: actionTypes.SHOW_ALERT_MODAL }),
+    updateModalClose: () => dispatch({ type: actionTypes.UPDATE_MODAL_CLOSE }),
+    alertModalClose: () => dispatch({ type: actionTypes.ALERT_MODAL_CLOSE })
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(ProfileComp);
