@@ -2,7 +2,7 @@ import axios from "axios";
 import setAuthToken from "../utils/setAuthToken";
 import jwt_decode from "jwt-decode";
 
-import { GET_ERRORS, SET_CURRENT_USER, USER_LOADING } from "./types";
+import * as actionTypes from "./types";
 
 // Register User
 export const registerUser = (userData, history) => dispatch => {
@@ -11,7 +11,7 @@ export const registerUser = (userData, history) => dispatch => {
     .then(res => history.push("/login"))
     .catch(err =>
       dispatch({
-        type: GET_ERRORS,
+        type: actionTypes.GET_ERRORS,
         payload: err.response.data
       })
     );
@@ -37,7 +37,7 @@ export const loginUser = userData => dispatch => {
     })
     .catch(err =>
       dispatch({
-        type: GET_ERRORS,
+        type: actionTypes.GET_ERRORS,
         payload: err.response.data
       })
     );
@@ -50,7 +50,7 @@ export const setCurrentUser = decoded => {
   localStorage.setItem("payload", decoded.id);
 
   return {
-    type: SET_CURRENT_USER,
+    type: actionTypes.SET_CURRENT_USER,
     payload: decoded
   };
 };
@@ -58,7 +58,7 @@ export const setCurrentUser = decoded => {
 // User loading
 export const setUserLoading = () => {
   return {
-    type: USER_LOADING
+    type: actionTypes.USER_LOADING
   };
 };
 

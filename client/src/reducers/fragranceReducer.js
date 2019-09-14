@@ -1,4 +1,3 @@
-//import { SHOW_UPDATE_MODAL, SHOW_ALERT_MODAL, UPDATE_MODAL_CLOSE, ALERT_MODAL_CLOSE } from "../actions/types";
 
 const initialState = {
     perfumes: [],

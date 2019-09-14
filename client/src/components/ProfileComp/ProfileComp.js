@@ -4,19 +4,9 @@ import Wrapper from "../Wrapper/Wrapper";
 import { Table, Button } from "react-bootstrap";
 import UpdateDataModal from "../UpdateDataModal/UpdateDataModal";
 import AlertModal from "../AlertModal/AlertModal";
-import API from "../../utils/API";
 import * as actionCreators from "../../actions/profileActions";
 
 class ProfileComp extends Component {
-
-  componentDidMount() {
-    const userId = localStorage.getItem('payload');
-
-    API.getUserData(userId).then(response => {
-      this.props.user = response.data;
-    })
-    .catch(err => console.log(err))
-  }
 
   render() {
     return (
