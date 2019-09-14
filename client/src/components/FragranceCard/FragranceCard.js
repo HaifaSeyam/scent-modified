@@ -18,24 +18,7 @@ class FragranceCard extends Component {
     let path = "/details";
     this.props.history.push(path); 
   }
-
-  addToFavorite(prod) {
-    const isAuth = localStorage.getItem('jwtToken');
-    if (isAuth) {
-      this.props.modalShow = true;
-      this.props.currentPerfume = prod;
-    } else {
-      this.props.alertModalShow = true;
-      this.props.msg = "You're not logged in. Click register to get started now. Already a member? Sign in.";
-    }
-  }
   
-  handleAddToFavorites = (prod) => {
-    this.addToFavorite(prod);
-  }
-  modalClose = () => this.props.modalShow = false;
-  alertModalClose = () => this.props.alertModalShow = false;
-
   render() {
     return (
       <Wrapper>
@@ -50,7 +33,7 @@ class FragranceCard extends Component {
               <Card.Title className="cardTitle">{prod.name}</Card.Title>
               <Button variant="light"
               style={{ backgroundColor: "#355C7D", color: "white" }} 
-              onClick={() => this.handleAddToFavorites(prod)}
+              onClick={() => this.props.handleAddToFavorites(prod)}
               >Add to Favorites</Button>
             </Card.Body>
           </Card>))
@@ -58,14 +41,14 @@ class FragranceCard extends Component {
         }
         <MyVerticallyCenteredModal
           show={this.props.modalShow}
-          onHide={this.modalClose}
-          closeModal={this.modalClose}
+          onHide={this.props.modalClose}
+          closeModal={this.props.modalClose}
           prod={this.props.currentPerfume}
         />
         <AlertModal
           show={this.props.alertModalShow}
-          onHide={this.alertModalClose}
-          closeModal={this.alertModalClose}
+          onHide={this.props.alertModalClose}
+          closeModal={this.props.alertModalClose}
           msg={this.props.msg}
         />
       </Wrapper>
@@ -85,7 +68,10 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return { 
-    displayFragrnace: () => dispatch(actionCreators.displayFragrnace())
+    displayFragrnace: () => dispatch(actionCreators.displayFragrnace()),
+    modalClose: () => dispatch(actionCreators.modalClose()),
+    alertModalClose: () => dispatch(actionCreators.alertModalClose()),
+    handleAddToFavorites: (prod) => dispatch(actionCreators.handleAddToFavorites(prod))
   }
 }
 
