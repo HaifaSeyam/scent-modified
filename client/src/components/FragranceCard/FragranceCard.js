@@ -1,34 +1,17 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import * as actionCreators from "../../actions/fragranceActions"
 import Wrapper from "../Wrapper/Wrapper";
 import { Card, Button } from "react-bootstrap";
-import API from "../../utils/API";
 import { withRouter } from 'react-router-dom';
 import MyVerticallyCenteredModal from '../MyVerticallyCenteredModal/MyVerticallyCenteredModal';
 import AlertModal from '../AlertModal/AlertModal';
 
 
 class FragranceCard extends Component {
-  
-  // state= {
-  //   perfumes: [],
-  //   modalShow: false,
-  //   alertModalShow: false,
-  //   currentPerfume: [],
-  //   msg: ""
-  // }
-
-  loadPerfume = () => {
-    return API.getPerfume()
-  }
 
   componentDidMount() {
-    this.loadPerfume()
-    .then(response => { 
-      console.log("ALL PERFUMES", response.data);
-      this.props.perfumes = response.data 
-    })
-    .catch(err => console.log(err))
+    this.props.displayFragrnace();
   }
 
   viewDetails = (prod) => {
@@ -100,7 +83,10 @@ const mapStateToProps = state => {
   }
 }
 
-//To finish this I need to know how to deal with componentDidMount with redux
-// const mapDispatchToProps = dispatch => {}
+const mapDispatchToProps = dispatch => {
+  return { 
+    displayFragrnace: () => dispatch(actionCreators.displayFragrnace())
+  }
+}
 
-export default connect(mapStateToProps)(withRouter(FragranceCard));
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(FragranceCard));

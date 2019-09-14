@@ -28,6 +28,11 @@ const initialState = {
                 ...state,
                 alertModalShow: false
             };
+        case actionTypes.PROFILE_DATA:
+            return {
+                ...state,
+                user: action.user
+            };
       default:
         return state;
     }

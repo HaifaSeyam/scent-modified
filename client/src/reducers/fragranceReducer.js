@@ -1,3 +1,4 @@
+import * as actionTypes from "../actions/types";
 
 const initialState = {
     perfumes: [],
@@ -9,6 +10,11 @@ const initialState = {
 
   export default function(state = initialState, action) {
     switch (action.type) {
+      case actionTypes.FRAGRANCE_DATA:
+            return {
+                ...state,
+                perfumes: action.fragrance
+            };
         
       default:
         return state;

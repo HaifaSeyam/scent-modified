@@ -17,10 +17,10 @@ export const alertModalClose = () => {
     return { type: actionTypes.ALERT_MODAL_CLOSE }
 };
 
-export const setUserProfile = (userData) => {
+export const setUserProfile = (user) => {
     return { 
         type: actionTypes.PROFILE_DATA,
-        userData: userData
+        user: user
      }
 }
 
@@ -29,6 +29,7 @@ export const displayUserData = () => {
         const userId = localStorage.getItem('payload');
 
         API.getUserData(userId).then(response => {
+            console.log("USER", response.data)
             dispatch(setUserProfile(response.data));
         })
             .catch(err => console.log(err))

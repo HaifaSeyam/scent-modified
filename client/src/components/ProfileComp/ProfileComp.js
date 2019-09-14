@@ -8,6 +8,10 @@ import * as actionCreators from "../../actions/profileActions";
 
 class ProfileComp extends Component {
 
+  componentDidMount() {
+    this.props.displayUserData();
+  }
+
   render() {
     return (
         <Wrapper>
@@ -114,15 +118,16 @@ const mapStateToProps = state => {
     alertModalShow: state.profile.alertModalShow,
     user: state.profile.user
   }
-}
+};
 
 const mapDispatchToProps = dispatch => {
   return { 
     showUpdateModal: () => dispatch(actionCreators.showUpdateModal()),
     showAlertModal: () => dispatch(actionCreators.showAlertModal()),
     updateModalClose: () => dispatch(actionCreators.updateModalClose()),
-    alertModalClose: () => dispatch(actionCreators.alertModalClose())
+    alertModalClose: () => dispatch(actionCreators.alertModalClose()),
+    displayUserData: () => dispatch(actionCreators.displayUserData())
   }
-}
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(ProfileComp);
