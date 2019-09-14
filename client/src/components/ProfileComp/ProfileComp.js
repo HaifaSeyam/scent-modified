@@ -5,15 +5,9 @@ import { Table, Button } from "react-bootstrap";
 import UpdateDataModal from "../UpdateDataModal/UpdateDataModal";
 import AlertModal from "../AlertModal/AlertModal";
 import API from "../../utils/API";
-import * as actionTypes from "../../actions/types";
+import * as actionCreators from "../../actions/profileActions";
 
 class ProfileComp extends Component {
-
-  // state = {
-  //     updateModalShow: false,
-  //     alertModalShow: false,
-  //     user: ""
-  //   }
 
   componentDidMount() {
     const userId = localStorage.getItem('payload');
@@ -23,13 +17,6 @@ class ProfileComp extends Component {
     })
     .catch(err => console.log(err))
   }
-
-  // showUpdateModal() { this.props.updateModalShow = true }
-  
-  // showAlertModal() { this.props.alertModalShow = true }
-
-  // updateModalClose = () => { this.props.updateModalShow = false }
-  // alertModalClose = () => { this.props.alertModalShow = false }
 
   render() {
     return (
@@ -141,10 +128,10 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return { 
-    showUpdateModal: () => dispatch({ type: actionTypes.SHOW_UPDATE_MODAL }),
-    showAlertModal: () => dispatch({ type: actionTypes.SHOW_ALERT_MODAL }),
-    updateModalClose: () => dispatch({ type: actionTypes.UPDATE_MODAL_CLOSE }),
-    alertModalClose: () => dispatch({ type: actionTypes.ALERT_MODAL_CLOSE })
+    showUpdateModal: () => dispatch(actionCreators.showUpdateModal()),
+    showAlertModal: () => dispatch(actionCreators.showAlertModal()),
+    updateModalClose: () => dispatch(actionCreators.updateModalClose()),
+    alertModalClose: () => dispatch(actionCreators.alertModalClose())
   }
 }
 
