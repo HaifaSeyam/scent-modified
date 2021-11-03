@@ -34,6 +34,6 @@
     "react-particles-js": "^2.6.0",
     "redux-thunk": "^2.3.0",
     "stripe": "^6.34.0",
-    "validator": "^10.11.0"
+    "validator": "^13.7.0"
   }
 }
